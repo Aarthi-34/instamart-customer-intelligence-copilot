@@ -1,0 +1,5 @@
+column,dtype,missing_count,missing_percent
+product_id,str,0,0.0
+product_name,str,0,0.0
+category,str,0,0.0
+price_inr,int64,0,0.0

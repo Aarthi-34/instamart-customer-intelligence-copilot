@@ -1,0 +1,4 @@
+- Hyderabad generated the highest completed-order revenue (INR 528,589.90).
+- Electronics led category revenue (INR 1,219,248.10); Personal Care was lowest (INR 168,433.95).
+- There were 1,175 customers with completed purchases; their mean spend was INR 2,552.06 and median spend was INR 2,286.50.
+- The highest-revenue day was 2025-06-16 at INR 29,969.40; cumulative completed revenue ended at INR 2,998,668.80.

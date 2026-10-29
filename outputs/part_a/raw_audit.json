@@ -1,0 +1,131 @@
+[
+  {
+    "dataset": "customers",
+    "rows": 1200,
+    "columns": 5,
+    "shape": [
+      1200,
+      5
+    ],
+    "dtypes": {
+      "customer_id": "str",
+      "city": "str",
+      "signup_date": "str",
+      "age": "float64",
+      "gender": "str"
+    },
+    "missing": {
+      "customer_id": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "city": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "signup_date": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "age": {
+        "count": 61,
+        "percent": 5.0833
+      },
+      "gender": {
+        "count": 30,
+        "percent": 2.5
+      }
+    }
+  },
+  {
+    "dataset": "products",
+    "rows": 40,
+    "columns": 4,
+    "shape": [
+      40,
+      4
+    ],
+    "dtypes": {
+      "product_id": "str",
+      "product_name": "str",
+      "category": "str",
+      "price_inr": "int64"
+    },
+    "missing": {
+      "product_id": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "product_name": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "category": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "price_inr": {
+        "count": 0,
+        "percent": 0.0
+      }
+    }
+  },
+  {
+    "dataset": "orders",
+    "rows": 13084,
+    "columns": 9,
+    "shape": [
+      13084,
+      9
+    ],
+    "dtypes": {
+      "order_id": "str",
+      "customer_id": "str",
+      "product_id": "str",
+      "quantity": "int64",
+      "order_ts": "str",
+      "status": "str",
+      "discount_pct": "int64",
+      "order_amount": "str",
+      "delivery_minutes": "float64"
+    },
+    "missing": {
+      "order_id": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "customer_id": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "product_id": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "quantity": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "order_ts": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "status": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "discount_pct": {
+        "count": 0,
+        "percent": 0.0
+      },
+      "order_amount": {
+        "count": 53,
+        "percent": 0.4051
+      },
+      "delivery_minutes": {
+        "count": 2541,
+        "percent": 19.4207
+      }
+    }
+  }
+]

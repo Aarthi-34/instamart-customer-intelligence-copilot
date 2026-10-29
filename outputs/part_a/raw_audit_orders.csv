@@ -1,0 +1,10 @@
+column,dtype,missing_count,missing_percent
+order_id,str,0,0.0
+customer_id,str,0,0.0
+product_id,str,0,0.0
+quantity,int64,0,0.0
+order_ts,str,0,0.0
+status,str,0,0.0
+discount_pct,int64,0,0.0
+order_amount,str,53,0.4051
+delivery_minutes,float64,2541,19.4207

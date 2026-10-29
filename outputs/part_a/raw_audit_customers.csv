@@ -1,0 +1,6 @@
+column,dtype,missing_count,missing_percent
+customer_id,str,0,0.0
+city,str,0,0.0
+signup_date,str,0,0.0
+age,float64,61,5.0833
+gender,str,30,2.5

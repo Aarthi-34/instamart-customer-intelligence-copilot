@@ -1,0 +1,129 @@
+{
+  "raw_rows": {
+    "customers": 1200,
+    "products": 40,
+    "orders": 13084
+  },
+  "raw_order_duplicates_exact": 119,
+  "orders_after_exact_dedup": 12965,
+  "repeated_order_rows_before_order_id_resolution": 1312,
+  "final_orders": 12309,
+  "order_status_counts": {
+    "completed": 11110,
+    "cancelled": 1199
+  },
+  "completed_revenue_inr": 2998668.8,
+  "customer_age_missing_before_imputation": 67,
+  "customer_age_imputed": 67,
+  "order_amount_imputed": 112,
+  "negative_delivery_values_replaced": 105,
+  "completed_delivery_values_imputed": 774,
+  "customer_city_counts": {
+    "Bengaluru": 197,
+    "Chennai": 191,
+    "Delhi": 210,
+    "Hyderabad": 191,
+    "Mumbai": 184,
+    "Pune": 227
+  },
+  "customer_gender_counts": {
+    "female": 610,
+    "male": 560,
+    "unknown": 30
+  },
+  "sql_query_row_counts": {
+    "query_1_customer_spending": 1200,
+    "query_2_revenue_by_city_and_category": 30,
+    "query_3_above-average-priced_products": 11,
+    "query_4_customers_without_completed_orders": 25,
+    "query_5_above-average_customer_spend_using_a_cte": 561,
+    "query_6_customer_spend_rankings": 1200,
+    "query_7_daily_cumulative_revenue": 183
+  },
+  "sql_pandas_revenue_reconciled": true,
+  "sql_pandas_revenue_difference_inr": 0.0,
+  "daily_cumulative_final_inr": 2998668.8,
+  "daily_revenue_days": 183,
+  "top_customer_ranking": [
+    {
+      "customer_id": "C0693",
+      "city": "Mumbai",
+      "spend_inr": 14766.55,
+      "overall_rank": 1,
+      "city_dense_rank": 1,
+      "city_row_number": 1
+    },
+    {
+      "customer_id": "C0291",
+      "city": "Delhi",
+      "spend_inr": 13742.6,
+      "overall_rank": 2,
+      "city_dense_rank": 1,
+      "city_row_number": 1
+    },
+    {
+      "customer_id": "C0488",
+      "city": "Mumbai",
+      "spend_inr": 13187.5,
+      "overall_rank": 3,
+      "city_dense_rank": 2,
+      "city_row_number": 2
+    },
+    {
+      "customer_id": "C0082",
+      "city": "Bengaluru",
+      "spend_inr": 12856.2,
+      "overall_rank": 4,
+      "city_dense_rank": 1,
+      "city_row_number": 1
+    },
+    {
+      "customer_id": "C0743",
+      "city": "Hyderabad",
+      "spend_inr": 12730.05,
+      "overall_rank": 5,
+      "city_dense_rank": 1,
+      "city_row_number": 1
+    },
+    {
+      "customer_id": "C0525",
+      "city": "Bengaluru",
+      "spend_inr": 12719.7,
+      "overall_rank": 6,
+      "city_dense_rank": 2,
+      "city_row_number": 2
+    },
+    {
+      "customer_id": "C0699",
+      "city": "Bengaluru",
+      "spend_inr": 12471.8,
+      "overall_rank": 7,
+      "city_dense_rank": 3,
+      "city_row_number": 3
+    },
+    {
+      "customer_id": "C0267",
+      "city": "Hyderabad",
+      "spend_inr": 12210.25,
+      "overall_rank": 8,
+      "city_dense_rank": 2,
+      "city_row_number": 2
+    },
+    {
+      "customer_id": "C0332",
+      "city": "Delhi",
+      "spend_inr": 11806.4,
+      "overall_rank": 9,
+      "city_dense_rank": 2,
+      "city_row_number": 2
+    },
+    {
+      "customer_id": "C0512",
+      "city": "Hyderabad",
+      "spend_inr": 11617.65,
+      "overall_rank": 10,
+      "city_dense_rank": 3,
+      "city_row_number": 3
+    }
+  ]
+}

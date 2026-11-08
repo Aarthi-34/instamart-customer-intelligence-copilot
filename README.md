@@ -160,7 +160,23 @@ The selected random-forest pipeline is saved as `outputs/lapse_model.joblib`; it
 
 # Part C
 
-_Placeholder — not implemented yet._
+## Support ticket triage with guardrails
+
+Run `python src/part_c.py` from the repository root to perform all offline classification runs and save the artifacts. The final few-shot triage is written to `outputs/part_c/triage_results.csv`; the zero-shot budget demonstration is written to `outputs/triage_budget_demo.csv`. The implementation calls only the supplied `mock_llm.py`; each complete run resets its deterministic mock state. Run `python src/validate_part_c.py` to check the saved results against the raw ticket and segment data.
+
+The audit used `keep_default_na=False` and found 164 tickets: 4 empty tickets were marked `skipped_empty`, 4 tickets over 400 estimated tokens were marked `flagged_long`, and 156 were eligible for classification. Email, phone, and order ID redactions were applied in the specified order; the audit counted 55 email, 91 phone, and 132 order ID matches. Neither empty nor long tickets were sent to the model. Each model user message was exactly the redacted ticket text. Prompt SHA-256 fingerprints are saved with run results so validation can independently confirm that property without saving raw ticket text.
+
+The zero-shot and few-shot comparison runs each made calls for all 156 eligible tickets. Both produced 135 valid JSON classifications, 12 valid keyword fallbacks, and 9 outputs requiring human review. The zero-shot accuracy on its 147 valid classifications was 85.71% (126 correct); few-shot accuracy was 100% (147/147). Mean token use was 70.31 per valid zero-shot classification and 124.44 per valid few-shot classification. The zero-shot confusion matrix is saved in `outputs/part_c/zero_shot_confusion_matrix.csv`; its true-category rows and predicted-category columns are billing (38 correct), delivery (36 correct), technical (29 correct and 10 predicted billing), and fraud (23 correct and 11 predicted billing). Invalid outputs are excluded from that matrix and from accuracy, with their count and coverage reported separately in `metrics.json`.
+
+The mock produced 19 transient failures in each full comparison run. All 19 retries recovered in both runs; the retry log records one row and the actual exponential-jitter delay for each retry. Invalid responses were never guessed: the 12 single-category keyword fallbacks were marked `classified_keyword`, and the remaining 9 malformed or unsupported responses were marked `flagged_invalid_output` with a blank category.
+
+The zero-shot 6,000-token demonstration in `outputs/triage_budget_demo.csv` used 6,036 tokens from completed calls, classified 91 tickets (86 valid and 5 invalid), then marked the remaining 65 eligible tickets `budget_exhausted` without further calls. Its measured accuracy on valid classifications was 83.72%. The final few-shot run in `outputs/part_c/triage_results.csv` used the required 100,000-token budget and completed without exhaustion: 18,292 tokens total, or 124.44 per valid classification, with 147 valid classifications and 9 invalid outputs routed for review.
+
+Few-shot classification used 18,292 tokens compared with 10,336 for zero-shot, an increase of approximately 77%. However, accuracy improved from 85.71% to 100% on valid classifications. For this support-triage experiment, the additional token cost is justified when incorrect ticket routing, especially for fraud, has a high operational cost. In a production system, this trade-off should be evaluated against actual model pricing and human-review costs.
+
+Final routing from the 164-row run contained 17 `human_review` cases (4 empty, 4 long and 9 invalid outputs), 34 `security_team` cases for valid fraud classifications, 11 `premium_desk` cases for valid non-fraud Premium customers, and 102 `support_queue` cases. Priorities were HIGH for the 34 fraud and 11 Premium cases, and NORMAL for the other 119. Missing segment records are treated as non-Premium. The detailed per-ticket audit, independent comparison runs, retry log, final classifications, and structured metrics are saved under `outputs/part_c/`; the budget demonstration is at `outputs/triage_budget_demo.csv`.
+
+The Part C validator passed all privacy, guardrail, retry, response validation, accuracy reconciliation, budget, and routing checks. Accuracy is measured on valid classifications; the invalid-output count and coverage make the excluded human-review cases explicit. These results describe the deterministic offline mock, not a hosted model.
 
 # Part D
 

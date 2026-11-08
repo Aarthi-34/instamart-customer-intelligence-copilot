@@ -1,0 +1,5 @@
+run,eligible_tickets,model_eligible_tickets,valid_classifications,json_classifications,keyword_classifications,invalid_outputs,accuracy_on_valid_classifications,valid_classification_coverage_of_model_eligible,tokens_total,tokens_per_valid_classification,token_budget,budget_exhausted_tickets,run_total_tokens_from_usage
+zero_shot,160,156,147,135,12,9,0.8571428571428571,0.9423076923076923,10336,70.31292517006803,,0,10336
+few_shot,160,156,147,135,12,9,1.0,0.9423076923076923,18292,124.43537414965986,,0,18292
+zero_shot_budget_demo,160,156,86,79,7,5,0.8372093023255814,0.5512820512820513,6036,70.18604651162791,6000.0,65,6036
+final_few_shot,160,156,147,135,12,9,1.0,0.9423076923076923,18292,124.43537414965986,100000.0,0,18292

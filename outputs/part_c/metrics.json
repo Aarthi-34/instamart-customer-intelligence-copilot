@@ -1,0 +1,201 @@
+{
+  "ticket_audit_and_redaction": {
+    "tickets": 164,
+    "empty_tickets": 4,
+    "long_tickets": 4,
+    "model_eligible_tickets": 156,
+    "email_redactions": 55,
+    "phone_redactions": 91,
+    "order_id_redactions": 132
+  },
+  "runs": {
+    "zero_shot": {
+      "eligible_tickets": 160,
+      "model_eligible_tickets": 156,
+      "valid_classifications": 147,
+      "json_classifications": 135,
+      "keyword_classifications": 12,
+      "invalid_outputs": 9,
+      "accuracy_on_valid_classifications": 0.8571428571428571,
+      "valid_classification_coverage_of_model_eligible": 0.9423076923076923,
+      "tokens_total": 10336,
+      "tokens_per_valid_classification": 70.31292517006803,
+      "confusion_matrix_valid_outputs_only": [
+        [
+          38,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          36,
+          0,
+          0
+        ],
+        [
+          10,
+          0,
+          29,
+          0
+        ],
+        [
+          11,
+          0,
+          0,
+          23
+        ]
+      ],
+      "confusion_matrix_categories": [
+        "billing",
+        "delivery",
+        "technical",
+        "fraud"
+      ],
+      "token_budget": null,
+      "budget_exhausted_tickets": 0,
+      "run_total_tokens_from_usage": 10336
+    },
+    "few_shot": {
+      "eligible_tickets": 160,
+      "model_eligible_tickets": 156,
+      "valid_classifications": 147,
+      "json_classifications": 135,
+      "keyword_classifications": 12,
+      "invalid_outputs": 9,
+      "accuracy_on_valid_classifications": 1.0,
+      "valid_classification_coverage_of_model_eligible": 0.9423076923076923,
+      "tokens_total": 18292,
+      "tokens_per_valid_classification": 124.43537414965986,
+      "confusion_matrix_valid_outputs_only": [
+        [
+          38,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          36,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          39,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          34
+        ]
+      ],
+      "confusion_matrix_categories": [
+        "billing",
+        "delivery",
+        "technical",
+        "fraud"
+      ],
+      "token_budget": null,
+      "budget_exhausted_tickets": 0,
+      "run_total_tokens_from_usage": 18292
+    },
+    "zero_shot_budget_demo": {
+      "eligible_tickets": 160,
+      "model_eligible_tickets": 156,
+      "valid_classifications": 86,
+      "json_classifications": 79,
+      "keyword_classifications": 7,
+      "invalid_outputs": 5,
+      "accuracy_on_valid_classifications": 0.8372093023255814,
+      "valid_classification_coverage_of_model_eligible": 0.5512820512820513,
+      "tokens_total": 6036,
+      "tokens_per_valid_classification": 70.18604651162791,
+      "confusion_matrix_valid_outputs_only": [
+        [
+          21,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          16,
+          0,
+          0
+        ],
+        [
+          6,
+          0,
+          21,
+          0
+        ],
+        [
+          8,
+          0,
+          0,
+          14
+        ]
+      ],
+      "confusion_matrix_categories": [
+        "billing",
+        "delivery",
+        "technical",
+        "fraud"
+      ],
+      "token_budget": 6000,
+      "budget_exhausted_tickets": 65,
+      "run_total_tokens_from_usage": 6036
+    },
+    "final_few_shot": {
+      "eligible_tickets": 160,
+      "model_eligible_tickets": 156,
+      "valid_classifications": 147,
+      "json_classifications": 135,
+      "keyword_classifications": 12,
+      "invalid_outputs": 9,
+      "accuracy_on_valid_classifications": 1.0,
+      "valid_classification_coverage_of_model_eligible": 0.9423076923076923,
+      "tokens_total": 18292,
+      "tokens_per_valid_classification": 124.43537414965986,
+      "confusion_matrix_valid_outputs_only": [
+        [
+          38,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          36,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          39,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          34
+        ]
+      ],
+      "confusion_matrix_categories": [
+        "billing",
+        "delivery",
+        "technical",
+        "fraud"
+      ],
+      "token_budget": 100000,
+      "budget_exhausted_tickets": 0,
+      "run_total_tokens_from_usage": 18292
+    }
+  }
+}

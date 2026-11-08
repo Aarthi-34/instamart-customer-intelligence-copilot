@@ -1,0 +1,6 @@
+feature,importance
+numeric__frequency,0.2795887034284961
+numeric__monetary,0.2711764079216408
+numeric__recency_days,0.11514903927379687
+numeric__average_delivery_minutes,0.06128614021402933
+numeric__cancellation_rate,0.05232496989833942

@@ -15,9 +15,11 @@ python -m pip install -r requirements.txt
 python generate_data.py
 python src/part_a.py
 python src/validate_part_a.py
+python src/part_b.py
+python src/validate_part_b.py
 ```
 
-`requirements.txt` pins the direct Part A dependencies. The data generator is deterministic and writes its raw CSVs under `data/raw/`; the Part A pipeline reads those files and rebuilds cleaned CSVs, the SQLite database, and analysis outputs. Successful validation prints `ALL CHECKPOINTS PASSED`.
+`requirements.txt` pins the direct Part A and Part B dependencies. The data generator is deterministic and writes its raw CSVs under `data/raw/`; the Part A pipeline reads those files and rebuilds cleaned CSVs, the SQLite database, and analysis outputs. Part B reads the cleaned files and produces the segmentation, prediction and reporting artifacts. Successful validations print `ALL CHECKPOINTS PASSED` and `ALL PART B CHECKPOINTS PASSED`, respectively.
 
 # Part A
 
@@ -71,15 +73,15 @@ Completed-order descriptive statistics (`outputs/part_a/descriptive_statistics.c
 
 | Query | Result rows / finding |
 | --- | ---: |
-| Customer spending | 1,200 customers |
+| Customer spending | 30 customers with qualifying completed orders over INR 500 and customer totals over INR 8,000 |
 | Revenue by city and category | 30 city/category groups |
 | Products above average price | 11 products |
 | No completed orders | 25 customers |
-| Spend above customer average | 561 customers |
-| Spend rankings | 1,200 customers |
+| Spend above customer average | 550 customers with completed orders above the eligible-customer average |
+| Spend rankings | 1,175 customers with completed orders; ranks are within city |
 | Daily cumulative revenue | 183 dates |
 
-The spend ranking leaders are C0693 (Mumbai, INR 14,766.55), C0291 (Delhi, INR 13,742.60), and C0488 (Mumbai, INR 13,187.50). Electronics had the highest category revenue (INR 1,219,248.10); Personal Care had the lowest (INR 168,433.95). The top daily revenue was INR 29,969.40 on 2025-06-16. Cumulative daily revenue ends at INR 2,998,668.80.
+Query 1 returns 30 customers; its top qualifying total is C0693 in Mumbai at INR 13,776.55. The six Query 6 city leaders are Bengaluru C0082 (INR 12,856.20), Chennai C0930 (INR 10,151.40), Delhi C0291 (INR 13,742.60), Hyderabad C0743 (INR 12,730.05), Mumbai C0693 (INR 14,766.55), and Pune C0426 (INR 10,377.10). In eight rows, `RANK()` differs from `ROW_NUMBER()` because customers tie on city spend. Electronics had the highest category revenue (INR 1,219,248.10); Personal Care had the lowest (INR 168,433.95). The top daily revenue was INR 29,969.40 on 2025-06-16. Cumulative daily revenue ends at INR 2,998,668.80.
 
 The pandas city/category pivot includes row and column margins in `pandas_city_category_revenue_pivot.csv`. Its category/city cells reconcile to the SQL result with a difference of INR 0.00, and its grand total equals completed-order revenue.
 
@@ -94,7 +96,67 @@ These answers contain fewer than 200 words in total. The validation script check
 
 # Part B
 
-_Placeholder — not implemented yet._
+## RFM analysis and customer segments
+
+RFM includes the 1,175 customers with at least one completed order. At the snapshot of 2025-10-01 00:00:00, recency is the whole elapsed days since the latest completed order; frequency is the count of distinct completed order IDs; monetary is the sum of completed order amounts. The calculated checks are median/min/max recency 19/0/180 days, mean/max frequency 9.46/33 orders, and mean/max monetary INR 2,552.06/14,766.55.
+
+The three RFM features were standardized before KMeans. Each K uses `n_init=10` and `random_state=42`; silhouette was computed on the same scaled matrix.
+
+| K | Inertia | Silhouette |
+| ---: | ---: | ---: |
+| 2 | 1,820.761 | 0.4650 |
+| 3 | 1,268.235 | 0.4452 |
+| 4 | 743.071 | 0.5255 |
+| 5 | 617.367 | 0.4805 |
+| 6 | 503.171 | 0.4819 |
+| 7 | 408.460 | 0.4163 |
+| 8 | 366.503 | 0.4123 |
+
+K=4 is selected: the inertia drop through K=4 marks a useful elbow, K=4 has the strongest silhouette, and four profiles remain practical to describe and act on. K=8 has lower inertia because adding clusters can only reduce or maintain within-cluster squared distances. That alone does not make it better: at K=8 the silhouette is lower and customers are split into more, less useful groups.
+
+| Segment | Customers | Mean recency (days) | Mean frequency | Mean monetary (INR) | Suggested action |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Core Customers | 436 | 29.86 | 3.77 | 1,057.62 | Use low-cost personalized nudges to encourage another purchase. |
+| Premium | 138 | 25.12 | 6.77 | 7,129.70 | Offer tailored recognition and early access; protect the high-value relationship. |
+| Frequent Loyalists | 419 | 9.77 | 19.40 | 3,410.02 | Reinforce the habit with convenience benefits and complementary recommendations. |
+| At-Risk Customers | 182 | 110.04 | 2.20 | 685.99 | Prioritize a relevant win-back offer and monitor for renewed activity. |
+
+Premium is assigned to the segment with the highest measured mean monetary value. KMeans IDs are arbitrary labels, not business rankings. The saved `outputs/customer_segments.csv` contains one row per eligible customer and the boolean `is_premium` flag. PCA on the scaled RFM features explains 0.6343 and 0.2180 of variance in its first two components, 0.8523 total.
+
+## Lapse prediction
+
+The model cohort has 1,156 customers with at least one completed order strictly before 2025-09-01 00:00:00. A customer is labeled lapsed when they have no completed order during September 1–30; 443 customers are lapsed (38.32%). Features use only pre-cutoff order history plus the customer table: recency, distinct completed-order frequency, completed spend, average discount, final-status cancellation rate, average completed delivery time, most frequent product category, city, age, gender and tenure. The latest order timestamp used for any feature was 2025-08-31 22:35:45. The label, whole-window segment ID and Premium flag are excluded from model features.
+
+The split is stratified with `test_size=0.2` and `random_state=42`: 924 training rows and 232 untouched test rows. Each model uses a pipeline with numeric `StandardScaler` and `OneHotEncoder(drop="first", handle_unknown="ignore")` for city, gender and most frequent category. Preprocessing is fit within training folds. Five-fold F1 GridSearchCV selected logistic regression C=100 (best CV F1 0.651) and random forest max_depth=8/min_samples_leaf=10 (best CV F1 0.681; 45 fits).
+
+| Model / result | Accuracy | Lapsed precision | Lapsed recall | Lapsed F1 | Confusion matrix `[[TN, FP], [FN, TP]]` |
+| --- | ---: | ---: | ---: | ---: | --- |
+| All-negative baseline | 0.616 | 0.000 | 0.000 | 0.000 | `[[143, 0], [89, 0]]` |
+| Logistic regression, tuned | 0.728 | 0.644 | 0.652 | 0.648 | `[[111, 32], [31, 58]]` |
+| Random forest, tuned | 0.737 | 0.659 | 0.652 | 0.655 | `[[113, 30], [31, 58]]` |
+
+The random forest is selected because its training-only cross-validation F1 (0.681) exceeds logistic regression (0.651); the held-out test results are reported after that selection. Missing a likely lapse means losing an opportunity to retain that customer, so recall matters. However, false positives spend campaign budget and discounts on customers who would have stayed, so precision also matters. The selected model gives a modest precision and accuracy improvement while retaining the same recall as logistic regression, making it the better measured balance here. It still misses 31 of 89 lapsed test customers and flags 30 non-lapsed customers, so campaign thresholds and costs should be reviewed before deployment.
+
+## Oversampling experiment
+
+The training split initially contains 570 non-lapsed and 354 lapsed customers. All 924 original rows were kept and 216 lapsed rows were duplicated with replacement (`random_state=42`), yielding 570 per class. The best logistic-regression configuration was refit on that balanced training set and evaluated on the same untouched test set.
+
+| Logistic regression | Precision | Recall | F1 | Confusion matrix `[[TN, FP], [FN, TP]]` |
+| --- | ---: | ---: | ---: | --- |
+| Original training split | 0.644 | 0.652 | 0.648 | `[[111, 32], [31, 58]]` |
+| Oversampled training split | 0.589 | 0.854 | 0.697 | `[[90, 53], [13, 76]]` |
+
+Recall changed most, increasing by about 0.202; the model catches more lapsed customers but generates more false positives (53 instead of 32). Precision fell by about 0.055, so a retention campaign should use a lower-cost message or a capacity-aware probability threshold for this higher-recall list.
+
+## Feature interpretation and saved artifacts
+
+The five leading random-forest importances are `numeric__frequency` (0.280), `numeric__monetary` (0.271), `numeric__recency_days` (0.115), `numeric__average_delivery_minutes` (0.061), and `numeric__cancellation_rate` (0.052). These are predictive associations, not causal effects.
+
+The three largest-magnitude logistic coefficients are: frequency −1.698 (more prior completed orders associate with lower predicted lapse odds); Electronics −1.137 relative to the dropped Dairy category; and Grocery −0.449 relative to Dairy. Numeric coefficients use standardized features. One-hot coefficients compare each encoded level with its dropped reference; signs describe model associations and do not establish causation.
+
+The selected random-forest pipeline is saved as `outputs/lapse_model.joblib`; it was reloaded and produced identical predictions on the test rows. `outputs/retention_list.csv` contains the top 10 Premium customers in descending predicted lapse probability, plus `actually_lapsed` for retrospective reporting. Nine of the top 10 were actually lapsed. The list uses the trained model’s scores; the actual label is not a model input.
+
+**Post-hoc selection limitation:** Premium membership comes from whole-window RFM through September 30, which overlaps the lapse-label window. Therefore, using this flag to select the retention list is post-hoc and is not leakage-free evaluation of a Premium-only retention strategy. It is illustrative only.
 
 # Part C
 
@@ -106,4 +168,4 @@ _Placeholder — not implemented yet._
 
 # Limitations and Next Steps
 
-The generated records are synthetic and deterministic; they do not represent actual Instamart customers or operations. Part A focuses on data quality, SQL analysis, and descriptive exploration. The next recommended step is to review these outputs against the complete capstone rubric, then begin Part B without changing the supplied generator or mock LLM files.
+The generated records are synthetic and deterministic; they do not represent actual Instamart customers or operations. The lapse model is evaluated on a stratified holdout from one synthetic time window and may not generalize to future customer behavior. The Premium retention selection is post-hoc because whole-window RFM includes the September label period; it must not be interpreted as leakage-free evaluation. Review the campaign cost trade-off and validate on a later time-based holdout before any operational use. Parts C and D are not yet implemented.

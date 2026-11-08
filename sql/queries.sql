@@ -1,12 +1,15 @@
 -- Query 1: Customer spending
 SELECT c.customer_id,
        c.city,
-       COUNT(CASE WHEN o.status = 'completed' THEN 1 END) AS completed_orders,
-       ROUND(COALESCE(SUM(CASE WHEN o.status = 'completed' THEN o.order_amount ELSE 0 END), 0), 2) AS total_spend_inr
-FROM customers AS c
-LEFT JOIN orders AS o ON o.customer_id = c.customer_id
+       COUNT(*) AS completed_orders,
+       ROUND(SUM(o.order_amount), 2) AS total_spend_inr
+FROM orders AS o
+JOIN customers AS c ON c.customer_id = o.customer_id
+WHERE o.status = 'completed'
+  AND o.order_amount > 500
 GROUP BY c.customer_id, c.city
-ORDER BY total_spend_inr DESC, c.customer_id;
+HAVING SUM(o.order_amount) > 8000
+ORDER BY total_spend_inr DESC, c.customer_id ASC;
 
 -- Query 2: Revenue by city and category
 SELECT c.city,
@@ -38,9 +41,10 @@ ORDER BY c.customer_id;
 WITH customer_spend AS (
     SELECT c.customer_id,
            c.city,
-           COALESCE(SUM(CASE WHEN o.status = 'completed' THEN o.order_amount ELSE 0 END), 0) AS spend_inr
+           SUM(o.order_amount) AS spend_inr
     FROM customers AS c
-    LEFT JOIN orders AS o ON o.customer_id = c.customer_id
+    JOIN orders AS o ON o.customer_id = c.customer_id
+    WHERE o.status = 'completed'
     GROUP BY c.customer_id, c.city
 )
 SELECT customer_id, city, ROUND(spend_inr, 2) AS spend_inr
@@ -52,19 +56,20 @@ ORDER BY spend_inr DESC, customer_id;
 WITH customer_spend AS (
     SELECT c.customer_id,
            c.city,
-           COALESCE(SUM(CASE WHEN o.status = 'completed' THEN o.order_amount ELSE 0 END), 0) AS spend_inr
+           SUM(o.order_amount) AS spend_inr
     FROM customers AS c
-    LEFT JOIN orders AS o ON o.customer_id = c.customer_id
+    JOIN orders AS o ON o.customer_id = c.customer_id
+    WHERE o.status = 'completed'
     GROUP BY c.customer_id, c.city
 )
 SELECT customer_id,
        city,
        ROUND(spend_inr, 2) AS spend_inr,
-       RANK() OVER (ORDER BY spend_inr DESC) AS overall_rank,
+       RANK() OVER (PARTITION BY city ORDER BY spend_inr DESC) AS city_rank,
        DENSE_RANK() OVER (PARTITION BY city ORDER BY spend_inr DESC) AS city_dense_rank,
        ROW_NUMBER() OVER (PARTITION BY city ORDER BY spend_inr DESC, customer_id) AS city_row_number
 FROM customer_spend
-ORDER BY overall_rank, customer_id;
+ORDER BY city, city_rank, customer_id;
 
 -- Query 7: Daily cumulative revenue
 WITH daily_revenue AS (

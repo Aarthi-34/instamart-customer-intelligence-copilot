@@ -1,0 +1,4 @@
+feature,coefficient,absolute_coefficient,business_interpretation
+numeric__frequency,-1.6982389203159152,1.6982389203159152,More pre-cutoff completed orders has a negative association with predicted lapse odds (standardized coefficient).
+categorical__most_frequent_category_Electronics,-1.136712907233733,1.136712907233733,most_frequent_category=Electronics has a negative association with predicted lapse odds relative to the dropped reference level.
+categorical__most_frequent_category_Grocery,-0.44867271537696707,0.44867271537696707,most_frequent_category=Grocery has a negative association with predicted lapse odds relative to the dropped reference level.

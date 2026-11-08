@@ -1,0 +1,5 @@
+segment_id,customer_count,mean_recency,mean_frequency,mean_monetary,median_recency,median_frequency,median_monetary,segment_name,suggested_action
+0,436,28.862385321100916,3.772935779816514,1057.618233944954,25.5,3.0,701.7249999999999,Core Customers,Use low-cost personalized nudges to encourage a second or more frequent purchase.
+1,138,24.115942028985508,6.768115942028985,7129.695652173913,19.0,7.0,6610.025,Premium,Offer tailored recognition and early access; protect the high-value relationship.
+2,419,8.766109785202865,19.403341288782816,3410.020525059666,6.0,19.0,3303.2,Frequent Loyalists,Reinforce the habit with convenience benefits and complementary recommendations.
+3,182,109.04395604395604,2.2032967032967035,685.9925824175824,103.5,2.0,354.5,At-Risk Customers,"Prioritize a timely, relevant win-back offer and monitor for renewed activity."

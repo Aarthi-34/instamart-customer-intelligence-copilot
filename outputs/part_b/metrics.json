@@ -1,0 +1,322 @@
+{
+  "snapshot_date": "2025-10-01 00:00:00",
+  "rfm": {
+    "customers": 1175,
+    "recency_median": 19.0,
+    "recency_min": 0,
+    "recency_max": 180,
+    "frequency_mean": 9.45531914893617,
+    "frequency_max": 33,
+    "monetary_mean": 2552.0585531914894,
+    "monetary_max": 14766.55
+  },
+  "kmeans": [
+    {
+      "k": 2,
+      "inertia": 1820.7605530118508,
+      "silhouette": 0.4649718051476151
+    },
+    {
+      "k": 3,
+      "inertia": 1268.2345870687623,
+      "silhouette": 0.4451611905197954
+    },
+    {
+      "k": 4,
+      "inertia": 743.0711078443474,
+      "silhouette": 0.5255443348818724
+    },
+    {
+      "k": 5,
+      "inertia": 617.3666358544997,
+      "silhouette": 0.48049500840771253
+    },
+    {
+      "k": 6,
+      "inertia": 503.17062225816557,
+      "silhouette": 0.4818721636138158
+    },
+    {
+      "k": 7,
+      "inertia": 408.46045441940896,
+      "silhouette": 0.4163373417690264
+    },
+    {
+      "k": 8,
+      "inertia": 366.50348655316805,
+      "silhouette": 0.4123290612695322
+    }
+  ],
+  "selected_k": 4,
+  "cluster_summary": [
+    {
+      "segment_id": 0,
+      "customer_count": 436,
+      "mean_recency": 28.862385321100916,
+      "mean_frequency": 3.772935779816514,
+      "mean_monetary": 1057.618233944954,
+      "median_recency": 25.5,
+      "median_frequency": 3.0,
+      "median_monetary": 701.7249999999999,
+      "segment_name": "Core Customers",
+      "suggested_action": "Use low-cost personalized nudges to encourage a second or more frequent purchase."
+    },
+    {
+      "segment_id": 1,
+      "customer_count": 138,
+      "mean_recency": 24.115942028985508,
+      "mean_frequency": 6.768115942028985,
+      "mean_monetary": 7129.695652173913,
+      "median_recency": 19.0,
+      "median_frequency": 7.0,
+      "median_monetary": 6610.025,
+      "segment_name": "Premium",
+      "suggested_action": "Offer tailored recognition and early access; protect the high-value relationship."
+    },
+    {
+      "segment_id": 2,
+      "customer_count": 419,
+      "mean_recency": 8.766109785202865,
+      "mean_frequency": 19.403341288782816,
+      "mean_monetary": 3410.020525059666,
+      "median_recency": 6.0,
+      "median_frequency": 19.0,
+      "median_monetary": 3303.2,
+      "segment_name": "Frequent Loyalists",
+      "suggested_action": "Reinforce the habit with convenience benefits and complementary recommendations."
+    },
+    {
+      "segment_id": 3,
+      "customer_count": 182,
+      "mean_recency": 109.04395604395604,
+      "mean_frequency": 2.2032967032967035,
+      "mean_monetary": 685.9925824175824,
+      "median_recency": 103.5,
+      "median_frequency": 2.0,
+      "median_monetary": 354.5,
+      "segment_name": "At-Risk Customers",
+      "suggested_action": "Prioritize a timely, relevant win-back offer and monitor for renewed activity."
+    }
+  ],
+  "premium_segment_id": 1,
+  "pca_explained_variance_ratio": [
+    0.6342787496047422,
+    0.21803761714547434
+  ],
+  "pca_total_explained_variance_ratio": 0.8523163667502165,
+  "lapse": {
+    "cutoff": "2025-09-01 00:00:00",
+    "label_window_end_exclusive": "2025-10-01 00:00:00",
+    "cohort": 1156,
+    "lapsed": 443,
+    "lapsed_rate": 0.38321799307958476,
+    "train_rows": 924,
+    "test_rows": 232,
+    "split_counts": {
+      "train": {
+        "0": 570,
+        "1": 354
+      },
+      "test": {
+        "0": 143,
+        "1": 89
+      }
+    },
+    "feature_columns": [
+      "recency_days",
+      "frequency",
+      "monetary",
+      "average_discount_pct",
+      "cancellation_rate",
+      "average_delivery_minutes",
+      "age",
+      "tenure_days",
+      "city",
+      "gender",
+      "most_frequent_category"
+    ],
+    "feature_missing_counts": {
+      "recency_days": 0,
+      "frequency": 0,
+      "monetary": 0,
+      "average_discount_pct": 0,
+      "cancellation_rate": 0,
+      "average_delivery_minutes": 0,
+      "age": 0,
+      "tenure_days": 0,
+      "city": 0,
+      "gender": 0,
+      "most_frequent_category": 0
+    },
+    "max_feature_order_timestamp": "2025-08-31 22:35:45",
+    "post_cutoff_features_used": false,
+    "preprocessing_fit_rows_chosen_model": 924,
+    "train_only_preprocessing": true
+  },
+  "baseline_all_negative": {
+    "accuracy": 0.6163793103448276,
+    "precision_lapsed": 0.0,
+    "recall_lapsed": 0.0,
+    "f1_lapsed": 0.0,
+    "confusion_matrix_labels_0_1": [
+      [
+        143,
+        0
+      ],
+      [
+        89,
+        0
+      ]
+    ]
+  },
+  "models": {
+    "logistic_regression": {
+      "best_params": {
+        "classifier__C": 100
+      },
+      "best_cv_f1": 0.650552962900789,
+      "test": {
+        "accuracy": 0.728448275862069,
+        "precision_lapsed": 0.6444444444444445,
+        "recall_lapsed": 0.651685393258427,
+        "f1_lapsed": 0.6480446927374302,
+        "confusion_matrix_labels_0_1": [
+          [
+            111,
+            32
+          ],
+          [
+            31,
+            58
+          ]
+        ]
+      }
+    },
+    "random_forest": {
+      "best_params": {
+        "classifier__max_depth": 8,
+        "classifier__min_samples_leaf": 10
+      },
+      "best_cv_f1": 0.6810534884225208,
+      "test": {
+        "accuracy": 0.7370689655172413,
+        "precision_lapsed": 0.6590909090909091,
+        "recall_lapsed": 0.651685393258427,
+        "f1_lapsed": 0.655367231638418,
+        "confusion_matrix_labels_0_1": [
+          [
+            113,
+            30
+          ],
+          [
+            31,
+            58
+          ]
+        ]
+      },
+      "cv_fits": 45
+    }
+  },
+  "chosen_model": "random_forest",
+  "oversampling": {
+    "original_training_counts": {
+      "0": 570,
+      "1": 354
+    },
+    "balanced_training_counts": {
+      "0": 570,
+      "1": 570
+    },
+    "original_training_rows_retained": 924,
+    "added_lapsed_duplicates": 216,
+    "preprocessing_fit_rows": 1140,
+    "before": {
+      "accuracy": 0.728448275862069,
+      "precision_lapsed": 0.6444444444444445,
+      "recall_lapsed": 0.651685393258427,
+      "f1_lapsed": 0.6480446927374302,
+      "confusion_matrix_labels_0_1": [
+        [
+          111,
+          32
+        ],
+        [
+          31,
+          58
+        ]
+      ]
+    },
+    "after": {
+      "accuracy": 0.7155172413793104,
+      "precision_lapsed": 0.5891472868217055,
+      "recall_lapsed": 0.8539325842696629,
+      "f1_lapsed": 0.6972477064220184,
+      "confusion_matrix_labels_0_1": [
+        [
+          90,
+          53
+        ],
+        [
+          13,
+          76
+        ]
+      ]
+    }
+  },
+  "forest_top_five": [
+    {
+      "feature": "numeric__frequency",
+      "importance": 0.2795887034284961
+    },
+    {
+      "feature": "numeric__monetary",
+      "importance": 0.2711764079216408
+    },
+    {
+      "feature": "numeric__recency_days",
+      "importance": 0.11514903927379687
+    },
+    {
+      "feature": "numeric__average_delivery_minutes",
+      "importance": 0.06128614021402933
+    },
+    {
+      "feature": "numeric__cancellation_rate",
+      "importance": 0.05232496989833942
+    }
+  ],
+  "logistic_top_three_coefficients": [
+    {
+      "feature": "numeric__frequency",
+      "coefficient": -1.6982389203159152,
+      "absolute_coefficient": 1.6982389203159152,
+      "business_interpretation": "More pre-cutoff completed orders has a negative association with predicted lapse odds (standardized coefficient)."
+    },
+    {
+      "feature": "categorical__most_frequent_category_Electronics",
+      "coefficient": -1.136712907233733,
+      "absolute_coefficient": 1.136712907233733,
+      "business_interpretation": "most_frequent_category=Electronics has a negative association with predicted lapse odds relative to the dropped reference level."
+    },
+    {
+      "feature": "categorical__most_frequent_category_Grocery",
+      "coefficient": -0.44867271537696707,
+      "absolute_coefficient": 0.44867271537696707,
+      "business_interpretation": "most_frequent_category=Grocery has a negative association with predicted lapse odds relative to the dropped reference level."
+    }
+  ],
+  "model_reload_predictions_identical": true,
+  "retention_list": {
+    "premium_customers_total": 138,
+    "premium_customers_in_lapse_cohort": 138,
+    "premium_customers_without_pre_cutoff_eligibility": 0,
+    "rows": 10,
+    "actually_lapsed_top_10": 9
+  },
+  "library_versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit_learn": "1.9.1",
+    "joblib": "1.6.0"
+  }
+}

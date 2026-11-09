@@ -17,6 +17,10 @@ python src/part_a.py
 python src/validate_part_a.py
 python src/part_b.py
 python src/validate_part_b.py
+python src/part_c.py
+python src/validate_part_c.py
+python src/part_d.py
+python src/validate_part_d.py
 ```
 
 `requirements.txt` pins the direct Part A and Part B dependencies. The data generator is deterministic and writes its raw CSVs under `data/raw/`; the Part A pipeline reads those files and rebuilds cleaned CSVs, the SQLite database, and analysis outputs. Part B reads the cleaned files and produces the segmentation, prediction and reporting artifacts. Successful validations print `ALL CHECKPOINTS PASSED` and `ALL PART B CHECKPOINTS PASSED`, respectively.

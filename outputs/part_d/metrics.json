@@ -1,0 +1,44 @@
+{
+  "retrieval": {
+    "policy_documents": 5,
+    "chunks": 34,
+    "chunking": "one sentence per chunk, stable filename and sentence order",
+    "tfidf_ngram_range": [
+      1,
+      2
+    ],
+    "tfidf_stop_words": "english",
+    "top_k": 3,
+    "minimum_retrieval_score": 0.0,
+    "eval_questions": 14,
+    "answerable_questions": 12,
+    "unanswerable_questions": 2,
+    "top1_document_accuracy": 1.0,
+    "top3_document_recall": 1.0,
+    "unanswerable_abstention_accuracy": 1.0
+  },
+  "rag": {
+    "answerable_questions": 12,
+    "expected_document_retrieved": 12,
+    "expected_fact_matches": 12,
+    "expected_fact_match_rate": 1.0,
+    "unanswerable_questions": 2,
+    "correct_abstentions": 2,
+    "tokens_used": 1703
+  },
+  "refund_agent": {
+    "scenarios": 7,
+    "outcome_matches": 7,
+    "requested_refund_amount_matches": 7,
+    "issued_refund_amount_matches": 2,
+    "safe_stops": 1,
+    "pending_human_approvals": 1,
+    "tool_calls": 19,
+    "max_steps": 6,
+    "resume_handling": "pending cases require explicit approve/reject; rejected high-value request requires customer callback"
+  },
+  "limitations": [
+    "The scenario CSV has no request timestamp; offline scenarios use the verified delivery timestamp as their request-time fixture. Live callers must provide a trusted request timestamp.",
+    "The mock agent fixture does not resolve a human escalation itself; escalation is persisted and resumed only with an explicit human decision."
+  ]
+}

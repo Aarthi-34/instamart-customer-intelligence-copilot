@@ -1,0 +1,8 @@
+scenario_id,customer_id,order_id,expected_outcome,outcome,expected_refund_inr,requested_refund_inr,refund_inr,status,priority,route,human_review_required,callback_required,steps,tokens_used,stop_reason,handoff_summary,final_text
+S1,C0007,ORD-100048,REFUND,REFUND,128.25,128.25,128.25,completed,NORMAL,support_queue,False,False,5,783,,,REFUND: INR 128.25 issued.
+S2,C0008,ORD-100067,REFUND,REFUND,135.0,135.0,135.0,completed,NORMAL,support_queue,False,False,5,783,,,REFUND: INR 135.0 issued.
+S3,C0016,ORD-100145,ESCALATE,ESCALATE,1999.0,1999.0,0.0,pending_human_approval,HIGH,support_lead,True,False,4,545,human_approval_required,Scenario S3: refund request for order ORD-100145 of INR 1999.00 requires support lead approval.,
+S4,C0001,ORD-100001,DENIED,DENIED,0.0,0.0,0.0,denied,NORMAL,support_queue,False,False,4,543,,,DENIED: delivery was within 45 minutes.
+S5,C0003,ORD-100025,DENIED,DENIED,0.0,0.0,0.0,denied,NORMAL,support_queue,False,False,3,341,,,DENIED: only completed orders can be refunded.
+S6,C0001,ORD-999999,NOT_FOUND,NOT_FOUND,0.0,0.0,0.0,not_found,NORMAL,support_queue,False,False,2,148,,,NOT_FOUND: no such order.
+S7,C0007,ORD-100048,FALLBACK,FALLBACK,0.0,0.0,0.0,safe_stopped,NORMAL,human_review,True,False,1,68,policy_search_without_order_lookup,Scenario S7 was safely stopped: policy_search_without_order_lookup. Review the request and tool trace before taking action.,

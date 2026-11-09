@@ -1,0 +1,16 @@
+{
+  "ORD-100048": {
+    "approval": null,
+    "order_id": "ORD-100048",
+    "refund_inr": 128.25,
+    "scenario_id": "S1",
+    "status": "issued"
+  },
+  "ORD-100067": {
+    "approval": null,
+    "order_id": "ORD-100067",
+    "refund_inr": 135.0,
+    "scenario_id": "S2",
+    "status": "issued"
+  }
+}

@@ -1,0 +1,43 @@
+question,expected_doc,chunk_id,source_file,chunk_index,text,score,rank
+What delivery time makes a completed order eligible for a full refund?,refund_policy.txt,refund_policy_04,refund_policy.txt,4,"If a completed order is delivered in 45 minutes or less, no late-delivery refund is paid.",0.38277512311712997,1
+What delivery time makes a completed order eligible for a full refund?,refund_policy.txt,refund_policy_03,refund_policy.txt,3,"If a completed order is delivered in more than 45 minutes, the customer receives a full refund of the order amount.",0.3769479540919824,2
+What delivery time makes a completed order eligible for a full refund?,refund_policy.txt,refund_policy_01,refund_policy.txt,1,A refund can be requested only for orders whose status is completed.,0.203753776994728,3
+Who must approve a refund above INR 1000?,refund_policy.txt,refund_policy_06,refund_policy.txt,6,A refund above INR 1000 must be approved by a human support lead before money is returned.,0.5093463873294337,1
+Who must approve a refund above INR 1000?,refund_policy.txt,refund_policy_05,refund_policy.txt,5,Refunds up to INR 1000 are approved automatically by the support system.,0.3888969455548546,2
+Who must approve a refund above INR 1000?,refund_policy.txt,delivery_policy_03,delivery_policy.txt,3,"A delivery fee of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more.",0.1625807613610212,3
+How many days do I have to raise a refund request?,refund_policy.txt,refund_policy_08,refund_policy.txt,8,A refund request must be raised within 7 days of the delivery date.,0.46313826887870907,1
+How many days do I have to raise a refund request?,refund_policy.txt,privacy_policy_04,privacy_policy.txt,4,A customer can ask for account deletion and the request is completed within 30 days.,0.1814604019747822,2
+How many days do I have to raise a refund request?,refund_policy.txt,refund_policy_00,refund_policy.txt,0,Refund Policy.,0.15478011018479818,3
+What is the delivery fee on small orders?,delivery_policy.txt,delivery_policy_03,delivery_policy.txt,3,"A delivery fee of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more.",0.4016575567383915,1
+What is the delivery fee on small orders?,delivery_policy.txt,payment_policy_02,payment_policy.txt,2,Cash on delivery is available only for orders up to INR 2500.,0.18708303567596862,2
+What is the delivery fee on small orders?,delivery_policy.txt,delivery_policy_00,delivery_policy.txt,0,Delivery Policy.,0.15797300841426382,3
+On orders of what value is delivery free?,delivery_policy.txt,delivery_policy_03,delivery_policy.txt,3,"A delivery fee of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more.",0.34717919942078945,1
+On orders of what value is delivery free?,delivery_policy.txt,payment_policy_02,payment_policy.txt,2,Cash on delivery is available only for orders up to INR 2500.,0.16170824490051366,2
+On orders of what value is delivery free?,delivery_policy.txt,escalation_policy_04,escalation_policy.txt,4,A human agent must call the customer back if such a high-value request is rejected.,0.15052358995049567,3
+Why does the electronics delivery need a one time password?,delivery_policy.txt,delivery_policy_06,delivery_policy.txt,6,Electronics items are delivered only after the customer shares a one time password with the rider.,0.502912460992487,1
+Why does the electronics delivery need a one time password?,delivery_policy.txt,delivery_policy_00,delivery_policy.txt,0,Delivery Policy.,0.13291159150214596,2
+Why does the electronics delivery need a one time password?,delivery_policy.txt,delivery_policy_04,delivery_policy.txt,4,During heavy rain the promised time may extend to 60 minutes and the app shows a rain notice.,0.08324832445471407,3
+Is cash on delivery available for a large order?,payment_policy.txt,payment_policy_02,payment_policy.txt,2,Cash on delivery is available only for orders up to INR 2500.,0.633337151932483,1
+Is cash on delivery available for a large order?,payment_policy.txt,payment_policy_01,payment_policy.txt,1,"Customers can pay using UPI, debit card, credit card or cash on delivery.",0.20789392992017228,2
+Is cash on delivery available for a large order?,payment_policy.txt,payment_policy_05,payment_policy.txt,5,Wallet balance can be used for any order and is never refunded as cash.,0.16492159792335842,3
+How soon is money returned when a payment fails but is deducted?,payment_policy.txt,payment_policy_03,payment_policy.txt,3,"If a payment fails but money is deducted, the amount is returned automatically within 48 hours.",0.5640640366475916,1
+How soon is money returned when a payment fails but is deducted?,payment_policy.txt,refund_policy_06,refund_policy.txt,6,A refund above INR 1000 must be approved by a human support lead before money is returned.,0.2811035970291916,2
+How soon is money returned when a payment fails but is deducted?,payment_policy.txt,payment_policy_00,payment_policy.txt,0,Payment Policy.,0.1616851055927614,3
+Can wallet balance be refunded as cash?,payment_policy.txt,payment_policy_05,payment_policy.txt,5,Wallet balance can be used for any order and is never refunded as cash.,0.7502497566541432,1
+Can wallet balance be refunded as cash?,payment_policy.txt,payment_policy_06,payment_policy.txt,6,Coupons cannot be combined with wallet balance on the same order.,0.3833000666755013,2
+Can wallet balance be refunded as cash?,payment_policy.txt,payment_policy_02,payment_policy.txt,2,Cash on delivery is available only for orders up to INR 2500.,0.10066504092484095,3
+When are delivery addresses deleted from active systems?,privacy_policy.txt,privacy_policy_03,privacy_policy.txt,3,Delivery addresses are deleted from active systems 180 days after the last order.,0.7900347283412918,1
+When are delivery addresses deleted from active systems?,privacy_policy.txt,delivery_policy_00,delivery_policy.txt,0,Delivery Policy.,0.09497686130409892,2
+When are delivery addresses deleted from active systems?,privacy_policy.txt,privacy_policy_01,privacy_policy.txt,1,Customer phone numbers and email addresses are used only for order updates and support.,0.07366378764843576,3
+How fast must a fraud ticket reach the security team?,escalation_policy.txt,escalation_policy_01,escalation_policy.txt,1,A ticket about fraud or an unauthorized transaction is marked high priority and sent to the security team within 2 hours.,0.4816137002564597,1
+How fast must a fraud ticket reach the security team?,escalation_policy.txt,payment_policy_04,payment_policy.txt,4,A customer who sees two charges for one order should raise a billing ticket with the order identifier.,0.07924711616181311,2
+How fast must a fraud ticket reach the security team?,escalation_policy.txt,escalation_policy_03,escalation_policy.txt,3,"If an automated assistant cannot resolve a ticket within 6 steps, it must hand the case to a human agent with a short summary.",0.07008074250170561,3
+After how many steps must an automated assistant hand over to a human?,escalation_policy.txt,escalation_policy_03,escalation_policy.txt,3,"If an automated assistant cannot resolve a ticket within 6 steps, it must hand the case to a human agent with a short summary.",0.5264837750845133,1
+After how many steps must an automated assistant hand over to a human?,escalation_policy.txt,escalation_policy_04,escalation_policy.txt,4,A human agent must call the customer back if such a high-value request is rejected.,0.08613488655090508,2
+After how many steps must an automated assistant hand over to a human?,escalation_policy.txt,privacy_policy_02,privacy_policy.txt,2,Support tickets are processed with personal details masked before any automated tool reads them.,0.0852891989627697,3
+What is the favourite colour of the company mascot?,NONE,delivery_policy_00,delivery_policy.txt,0,Delivery Policy.,0.0,1
+What is the favourite colour of the company mascot?,NONE,delivery_policy_01,delivery_policy.txt,1,Standard delivery is promised within 30 minutes of order confirmation in all supported cities.,0.0,2
+What is the favourite colour of the company mascot?,NONE,delivery_policy_02,delivery_policy.txt,2,"The supported cities are Chennai, Mumbai, Bengaluru, Delhi, Hyderabad and Pune.",0.0,3
+Who won the cricket world cup final?,NONE,delivery_policy_00,delivery_policy.txt,0,Delivery Policy.,0.0,1
+Who won the cricket world cup final?,NONE,delivery_policy_01,delivery_policy.txt,1,Standard delivery is promised within 30 minutes of order confirmation in all supported cities.,0.0,2
+Who won the cricket world cup final?,NONE,delivery_policy_02,delivery_policy.txt,2,"The supported cities are Chennai, Mumbai, Bengaluru, Delhi, Hyderabad and Pune.",0.0,3

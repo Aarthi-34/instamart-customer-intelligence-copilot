@@ -1,0 +1,13 @@
+[
+  {
+    "scenario_id": "S3",
+    "customer_id": "C0016",
+    "order_id": "ORD-100145",
+    "order_amount": 1999.0,
+    "refund_inr": 1999.0,
+    "delivery_timestamp": "2025-07-04T16:26:58",
+    "request_received_at": "2025-07-04T16:26:58",
+    "status": "pending_human_approval",
+    "policy": "A refund above INR 1000 requires human support lead approval."
+  }
+]

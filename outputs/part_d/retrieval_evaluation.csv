@@ -1,0 +1,15 @@
+question,expected_doc,expected_fact,top1_doc,top1_score,expected_doc_top1,expected_doc_top3,is_unanswerable,abstained,abstention_correct
+What delivery time makes a completed order eligible for a full refund?,refund_policy.txt,more than 45 minutes,refund_policy.txt,0.38277512311712997,True,True,False,False,True
+Who must approve a refund above INR 1000?,refund_policy.txt,human support lead,refund_policy.txt,0.5093463873294337,True,True,False,False,True
+How many days do I have to raise a refund request?,refund_policy.txt,within 7 days,refund_policy.txt,0.46313826887870907,True,True,False,False,True
+What is the delivery fee on small orders?,delivery_policy.txt,INR 25,delivery_policy.txt,0.4016575567383915,True,True,False,False,True
+On orders of what value is delivery free?,delivery_policy.txt,INR 199 or more,delivery_policy.txt,0.34717919942078945,True,True,False,False,True
+Why does the electronics delivery need a one time password?,delivery_policy.txt,one time password,delivery_policy.txt,0.502912460992487,True,True,False,False,True
+Is cash on delivery available for a large order?,payment_policy.txt,INR 2500,payment_policy.txt,0.633337151932483,True,True,False,False,True
+How soon is money returned when a payment fails but is deducted?,payment_policy.txt,48 hours,payment_policy.txt,0.5640640366475916,True,True,False,False,True
+Can wallet balance be refunded as cash?,payment_policy.txt,never refunded as cash,payment_policy.txt,0.7502497566541432,True,True,False,False,True
+When are delivery addresses deleted from active systems?,privacy_policy.txt,180 days,privacy_policy.txt,0.7900347283412918,True,True,False,False,True
+How fast must a fraud ticket reach the security team?,escalation_policy.txt,within 2 hours,escalation_policy.txt,0.4816137002564597,True,True,False,False,True
+After how many steps must an automated assistant hand over to a human?,escalation_policy.txt,6 steps,escalation_policy.txt,0.5264837750845133,True,True,False,False,True
+What is the favourite colour of the company mascot?,NONE,,delivery_policy.txt,0.0,False,False,True,True,True
+Who won the cricket world cup final?,NONE,,delivery_policy.txt,0.0,False,False,True,True,True

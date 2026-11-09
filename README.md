@@ -180,8 +180,18 @@ The Part C validator passed all privacy, guardrail, retry, response validation, 
 
 # Part D
 
-_Placeholder — not implemented yet._
+## Policy RAG and refund agent
+
+Run `python src/part_d.py` from the repository root to build the index, evaluate policy Q&A, and run the seven offline refund scenarios. Run `python src/validate_part_d.py` to validate the saved artifacts against the supplied policy evaluation questions and scenario expectations. No external API or network is used.
+
+Policy files are split deterministically into one sentence per chunk, in filename and sentence order. TF-IDF uses unigrams and bigrams with English stop words removed; retrieval returns the top three chunks. The minimum retrieval score is zero, so questions with no lexical match abstain before calling the mock assistant. On the 14 supplied questions, top-1 document accuracy and top-3 document recall were both 100% on the 12 answerable questions. Both `NONE` questions were abstained correctly. The mock policy assistant returned the expected fact for all 12 answerable questions, using 1,703 tokens total.
+
+The refund agent uses local read-only order lookup and allow-listed policy, calculation, issuance, and escalation tools. The seven scenarios matched all expected outcomes: S1 and S2 were refunded (INR 128.25 and INR 135.00); S3 paused for human approval at INR 1,999; S4 and S5 were denied; S6 was not found; and S7 safely stopped on an ungrounded policy-search call and fell back for human review. The agent made 19 tool calls across the scenarios. It will not issue a refund above INR 1,000 without an explicit approval.
+
+S3 is saved in `outputs/part_d/pending_escalations.json`. After a human decision, resume it with `python src/part_d.py --resume-scenario S3 --decision approve --approved-by "support lead"` or use `--decision reject`. Approval records the approver and passes issuance through the same guarded, idempotent `issue_refund()` function; rejection records that a customer callback is required. The validator checks both resume paths without taking a decision for the saved scenario. The scenario fixture has no request timestamp, so the offline run uses the verified delivery timestamp as a fixture request time; live callers must supply a trusted timestamp. This limitation is recorded in `outputs/part_d/metrics.json`.
+
+Artifacts are under `outputs/part_d/`: policy chunks, retrieval ranks and evaluation, RAG answers, agent outcomes, tool traces, pending escalations, the idempotent `refund_ledger.json`, and structured metrics. The Part D validator prints `ALL PART D CHECKPOINTS PASSED` only after the saved outputs reconcile to the input files and safety checks.
 
 # Limitations and Next Steps
 
-The generated records are synthetic and deterministic; they do not represent actual Instamart customers or operations. The lapse model is evaluated on a stratified holdout from one synthetic time window and may not generalize to future customer behavior. The Premium retention selection is post-hoc because whole-window RFM includes the September label period; it must not be interpreted as leakage-free evaluation. Review the campaign cost trade-off and validate on a later time-based holdout before any operational use. Parts C and D are not yet implemented.
+The generated records are synthetic and deterministic; they do not represent actual Instamart customers or operations. The lapse model is evaluated on a stratified holdout from one synthetic time window and may not generalize to future customer behavior. The Premium retention selection is post-hoc because whole-window RFM includes the September label period; it must not be interpreted as leakage-free evaluation. Review the campaign cost trade-off and validate on a later time-based holdout before any operational use. Parts C and D are offline prototypes, not production integrations.

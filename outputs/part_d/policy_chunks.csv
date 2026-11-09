@@ -1,0 +1,35 @@
+chunk_id,source_file,chunk_index,text
+delivery_policy_00,delivery_policy.txt,0,Delivery Policy.
+delivery_policy_01,delivery_policy.txt,1,Standard delivery is promised within 30 minutes of order confirmation in all supported cities.
+delivery_policy_02,delivery_policy.txt,2,"The supported cities are Chennai, Mumbai, Bengaluru, Delhi, Hyderabad and Pune."
+delivery_policy_03,delivery_policy.txt,3,"A delivery fee of INR 25 is charged on orders below INR 199, and delivery is free on orders of INR 199 or more."
+delivery_policy_04,delivery_policy.txt,4,During heavy rain the promised time may extend to 60 minutes and the app shows a rain notice.
+delivery_policy_05,delivery_policy.txt,5,A rider will attempt to contact the customer twice before marking an order as undeliverable.
+delivery_policy_06,delivery_policy.txt,6,Electronics items are delivered only after the customer shares a one time password with the rider.
+escalation_policy_00,escalation_policy.txt,0,Escalation Policy.
+escalation_policy_01,escalation_policy.txt,1,A ticket about fraud or an unauthorized transaction is marked high priority and sent to the security team within 2 hours.
+escalation_policy_02,escalation_policy.txt,2,"Tickets from premium customers are answered within 1 hour, and all other tickets within 24 hours."
+escalation_policy_03,escalation_policy.txt,3,"If an automated assistant cannot resolve a ticket within 6 steps, it must hand the case to a human agent with a short summary."
+escalation_policy_04,escalation_policy.txt,4,A human agent must call the customer back if such a high-value request is rejected.
+payment_policy_00,payment_policy.txt,0,Payment Policy.
+payment_policy_01,payment_policy.txt,1,"Customers can pay using UPI, debit card, credit card or cash on delivery."
+payment_policy_02,payment_policy.txt,2,Cash on delivery is available only for orders up to INR 2500.
+payment_policy_03,payment_policy.txt,3,"If a payment fails but money is deducted, the amount is returned automatically within 48 hours."
+payment_policy_04,payment_policy.txt,4,A customer who sees two charges for one order should raise a billing ticket with the order identifier.
+payment_policy_05,payment_policy.txt,5,Wallet balance can be used for any order and is never refunded as cash.
+payment_policy_06,payment_policy.txt,6,Coupons cannot be combined with wallet balance on the same order.
+privacy_policy_00,privacy_policy.txt,0,Privacy Policy.
+privacy_policy_01,privacy_policy.txt,1,Customer phone numbers and email addresses are used only for order updates and support.
+privacy_policy_02,privacy_policy.txt,2,Support tickets are processed with personal details masked before any automated tool reads them.
+privacy_policy_03,privacy_policy.txt,3,Delivery addresses are deleted from active systems 180 days after the last order.
+privacy_policy_04,privacy_policy.txt,4,A customer can ask for account deletion and the request is completed within 30 days.
+privacy_policy_05,privacy_policy.txt,5,Payment card numbers are never stored by the support system.
+refund_policy_00,refund_policy.txt,0,Refund Policy.
+refund_policy_01,refund_policy.txt,1,A refund can be requested only for orders whose status is completed.
+refund_policy_02,refund_policy.txt,2,"Orders with status cancelled were never charged, so no refund applies to them."
+refund_policy_03,refund_policy.txt,3,"If a completed order is delivered in more than 45 minutes, the customer receives a full refund of the order amount."
+refund_policy_04,refund_policy.txt,4,"If a completed order is delivered in 45 minutes or less, no late-delivery refund is paid."
+refund_policy_05,refund_policy.txt,5,Refunds up to INR 1000 are approved automatically by the support system.
+refund_policy_06,refund_policy.txt,6,A refund above INR 1000 must be approved by a human support lead before money is returned.
+refund_policy_07,refund_policy.txt,7,Approved refunds are credited to the original payment method within 5 working days.
+refund_policy_08,refund_policy.txt,8,A refund request must be raised within 7 days of the delivery date.
